@@ -1,0 +1,68 @@
+﻿@model HiSUP.Models.DashboardStats
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <h2>🛡️ Admin Dashboard</h2>
+    <p class="text-muted">Welcome, @User.Identity?.Name</p>
+
+    <div class="row mt-4">
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-primary shadow">
+                <div class="card-body">
+                    <h6>Total Students</h6>
+                    <h2>@Model.TotalStudents</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-success shadow">
+                <div class="card-body">
+                    <h6>Total Faculty</h6>
+                    <h2>@Model.TotalFaculty</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-info shadow">
+                <div class="card-body">
+                    <h6>Total Courses</h6>
+                    <h2>@Model.TotalCourses</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-warning shadow">
+                <div class="card-body">
+                    <h6>Departments</h6>
+                    <h2>@Model.TotalDepartments</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-secondary shadow">
+                <div class="card-body">
+                    <h6>Library Items</h6>
+                    <h2>@Model.TotalLibraryItems</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-dark shadow">
+                <div class="card-body">
+                    <h6>Total Fee Collected</h6>
+                    <h2>Rs. @Model.TotalFeeCollected</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-controller="Student" asp-action="Index" class="btn btn-outline-primary">Manage Students</a>
+        <a asp-controller="Faculty" asp-action="Index" class="btn btn-outline-success">Manage Faculty</a>
+        <a asp-controller="Course" asp-action="Index" class="btn btn-outline-info">Manage Courses</a>
+        <a asp-controller="Library" asp-action="Index" class="btn btn-outline-secondary">Manage Library</a>
+        <a asp-controller="Fee" asp-action="Index" class="btn btn-outline-dark">Manage Fees</a>
+    </div>
+</div>

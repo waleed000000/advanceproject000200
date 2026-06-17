@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HiSUP.Controllers
 {
+    [Authorize(Roles = "Admin,Faculty")]
+   
     public class LibraryController : Controller
     {
         private readonly string _connectionString;
