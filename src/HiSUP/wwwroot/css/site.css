@@ -1,31 +1,244 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+/* ===== HISUP - Professional Dark Theme ===== */
+:root {
+    --navy: #0a1628;
+    --navy-light: #112240;
+    --navy-card: #1a2f4e;
+    --gold: #c9a84c;
+    --gold-light: #f0c96b;
+    --text-light: #e8eaf0;
+    --text-muted: #8892a4;
+    --border: #1e3a5f;
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: var(--navy);
+    color: var(--text-light);
+    font-family: 'Segoe UI', sans-serif;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* ===== NAVBAR ===== */
+.navbar {
+    background: linear-gradient(135deg, #0a1628 0%, #112240 100%) !important;
+    border-bottom: 2px solid var(--gold);
+    padding: 12px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.navbar-brand {
+    color: var(--gold) !important;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
+
+.nav-link {
+    color: var(--text-light) !important;
+    font-weight: 500;
+    padding: 8px 16px !important;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+    .nav-link:hover {
+        color: var(--gold) !important;
+        background: rgba(201,168,76,0.1);
+    }
+
+/* ===== CARDS ===== */
+.card {
+    background: var(--navy-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3) !important;
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+.card.bg-primary {
+    background: linear-gradient(135deg,#1a4a8a,#2563c4) !important;
+    border: none !important;
+}
+
+.card.bg-success {
+    background: linear-gradient(135deg,#145a32,#1e8449) !important;
+    border: none !important;
+}
+
+.card.bg-info {
+    background: linear-gradient(135deg,#0e6655,#17a589) !important;
+    border: none !important;
+}
+
+.card.bg-warning {
+    background: linear-gradient(135deg,#7d6608,#b7950b) !important;
+    border: none !important;
+}
+
+.card.bg-secondary {
+    background: linear-gradient(135deg,#2e4057,#3d5a80) !important;
+    border: none !important;
+}
+
+.card.bg-dark {
+    background: linear-gradient(135deg,#1c1c1c,#2d2d2d) !important;
+    border: none !important;
+}
+
+/* ===== TABLES ===== */
+.table {
+    color: var(--text-light) !important;
+}
+
+.table-dark, thead.table-dark th {
+    background: linear-gradient(135deg, #0a1628, #112240) !important;
+    color: var(--gold) !important;
+    border-color: var(--border) !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(255,255,255,0.03) !important;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: rgba(201,168,76,0.08) !important;
+}
+
+.table td, .table th {
+    border-color: var(--border) !important;
+    vertical-align: middle;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold), #a07830) !important;
+    border: none !important;
+    color: #000 !important;
+    font-weight: 600;
+    border-radius: 8px !important;
+    transition: all 0.3s;
+}
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, var(--gold-light), var(--gold)) !important;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(201,168,76,0.4);
+    }
+
+.btn-secondary {
+    background: var(--navy-light) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-light) !important;
+    border-radius: 8px !important;
+}
+
+.btn-outline-primary, .btn-outline-success,
+.btn-outline-info, .btn-outline-secondary,
+.btn-outline-dark {
+    border-radius: 8px !important;
+    transition: all 0.3s;
+}
+
+/* ===== FORMS ===== */
+.form-control, .form-select {
+    background: var(--navy-light) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-light) !important;
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--gold) !important;
+        box-shadow: 0 0 0 3px rgba(201,168,76,0.2) !important;
+        background: var(--navy-light) !important;
+        color: var(--text-light) !important;
+    }
+
+.form-label {
+    color: var(--gold) !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* ===== HEADINGS ===== */
+h2, h3, h4 {
+    color: var(--gold) !important;
+    font-weight: 700;
+}
+
+/* ===== BADGES ===== */
+.badge.bg-success {
+    background: #1e8449 !important;
+}
+
+.badge.bg-danger {
+    background: #922b21 !important;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: var(--navy-light) !important;
+    border-top: 2px solid var(--gold) !important;
+    color: var(--text-muted) !important;
+    padding: 16px 0 !important;
+}
+
+/* ===== HERO SECTION (Home Page) ===== */
+.hero-section {
+    background: linear-gradient(135deg, #0a1628 0%, #112240 50%, #0a1628 100%);
+    padding: 80px 0;
+    text-align: center;
+    border-bottom: 2px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+}
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 60%);
+        animation: pulse 4s ease-in-out infinite;
+    }
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--gold) !important;
+    letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-top: 12px;
+}
+
+/* ===== PAGE HEADER ===== */
+.page-header {
+    background: linear-gradient(135deg, var(--navy-light), var(--navy-card));
+    border-left: 4px solid var(--gold);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+    .page-header h2 {
+        margin: 0 !important;
+    }

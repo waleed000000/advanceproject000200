@@ -1,8 +1,79 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "HiSUP Portal";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-section">
+    <div class="container position-relative">
+        <div class="mb-3" style="font-size:3rem;">🎓</div>
+        <h1 class="hero-title">HiSUP</h1>
+        <p class="hero-subtitle">HITEC Smart University Portal</p>
+        <p class="text-muted mt-2" style="font-size:0.95rem;">
+            Student Management · Fee · Library · Faculty · Exams
+        </p>
+        <div class="mt-4">
+            <a asp-controller="Admin" asp-action="Index" class="btn btn-primary btn-lg me-3">
+                🛡️ Admin Dashboard
+            </a>
+            <a asp-controller="Student" asp-action="Index" class="btn btn-secondary btn-lg">
+                👨‍🎓 View Students
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 text-center p-3">
+                <div style="font-size:2.5rem;">👨‍🎓</div>
+                <h5 style="color:var(--gold)">Students</h5>
+                <p class="text-muted small">Register, manage and track all student records</p>
+                <a asp-controller="Student" asp-action="Index" class="btn btn-primary">Go →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 text-center p-3">
+                <div style="font-size:2.5rem;">👨‍🏫</div>
+                <h5 style="color:var(--gold)">Faculty</h5>
+                <p class="text-muted small">Manage faculty members and course assignments</p>
+                <a asp-controller="Faculty" asp-action="Index" class="btn btn-primary">Go →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 text-center p-3">
+                <div style="font-size:2.5rem;">💰</div>
+                <h5 style="color:var(--gold)">Fee Management</h5>
+                <p class="text-muted small">Process payments and generate fee slips</p>
+                <a asp-controller="Fee" asp-action="Index" class="btn btn-primary">Go →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 text-center p-3">
+                <div style="font-size:2.5rem;">📘</div>
+                <h5 style="color:var(--gold)">Courses</h5>
+                <p class="text-muted small">Add and manage university course catalog</p>
+                <a asp-controller="Course" asp-action="Index" class="btn btn-primary">Go →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 text-center p-3">
+                <div style="font-size:2.5rem;">📚</div>
+                <h5 style="color:var(--gold)">Library</h5>
+                <p class="text-muted small">Issue books and track library inventory</p>
+                <a asp-controller="Library" asp-action="Index" class="btn btn-primary">Go →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 text-center p-3">
+                <div style="font-size:2.5rem;">🛡️</div>
+                <h5 style="color:var(--gold)">Admin Panel</h5>
+                <p class="text-muted small">Full control — stats, reports, system settings</p>
+                <a asp-controller="Admin" asp-action="Index" class="btn btn-primary">Go →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 mb-4 text-center text-muted small">
+    <p>HiSUP v1.0 · HITEC University · Roll No: 24-CS-015</p>
 </div>
