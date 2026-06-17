@@ -1,0 +1,49 @@
+﻿@model HiSUP.Models.Student
+@{
+    ViewData["Title"] = "Student Details";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h4>👨‍🎓 Student Details</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Student ID</th>
+                            <td>@Model.StudentID</td>
+                        </tr>
+                        <tr>
+                            <th>Full Name</th>
+                            <td>@Model.FirstName @Model.LastName</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>@Model.Email</td>
+                        </tr>
+                        <tr>
+                            <th>Semester</th>
+                            <td>@Model.Semester</td>
+                        </tr>
+                        <tr>
+                            <th>CGPA</th>
+                            <td>@Model.CGPA</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                <span class="badge @(Model.Status == "Active" ? "bg-success" : "bg-danger")">
+                                    @Model.Status
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
