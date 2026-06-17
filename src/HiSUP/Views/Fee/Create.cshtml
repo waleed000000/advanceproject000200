@@ -1,0 +1,37 @@
+﻿@model HiSUP.Models.FeePayment
+@{ ViewData["Title"] = "Record Payment"; }
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white"><h4>💰 Record Fee Payment</h4></div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="mb-3">
+                            <label asp-for="StudentID" class="form-label"></label>
+                            <input asp-for="StudentID" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Amount" class="form-label"></label>
+                            <input asp-for="Amount" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="PaymentMethod" class="form-label"></label>
+                            <select asp-for="PaymentMethod" class="form-control">
+                                <option>Cash</option>
+                                <option>Bank Transfer</option>
+                                <option>Card</option>
+                            </select>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Save Payment</button>
+                            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

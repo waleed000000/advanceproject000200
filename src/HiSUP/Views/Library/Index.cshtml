@@ -1,0 +1,30 @@
+﻿@model List<HiSUP.Models.LibraryItem>
+@{ ViewData["Title"] = "Library"; }
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>📚 Library Items</h2>
+        <a asp-action="Create" class="btn btn-primary">+ Add Book</a>
+    </div>
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr><th>ID</th><th>Title</th><th>Author</th><th>Category</th><th>Available/Total</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        <tr>
+                            <td>@i.ItemID</td>
+                            <td>@i.Title</td>
+                            <td>@i.Author</td>
+                            <td>@i.Category</td>
+                            <td>@i.AvailableCopies / @i.TotalCopies</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

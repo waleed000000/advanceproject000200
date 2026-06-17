@@ -1,0 +1,30 @@
+﻿@model List<HiSUP.Models.Course>
+@{ ViewData["Title"] = "Courses"; }
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>📘 All Courses</h2>
+        <a asp-action="Create" class="btn btn-primary">+ Add Course</a>
+    </div>
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr><th>ID</th><th>Name</th><th>Code</th><th>Credit Hrs</th><th>Department</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr>
+                            <td>@c.CourseID</td>
+                            <td>@c.CourseName</td>
+                            <td>@c.CourseCode</td>
+                            <td>@c.CreditHours</td>
+                            <td>@c.DeptName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
