@@ -242,3 +242,16 @@ footer {
     .page-header h2 {
         margin: 0 !important;
     }
+footer {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+body {
+    padding-bottom: 60px;
+}
