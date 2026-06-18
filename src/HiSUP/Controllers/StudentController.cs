@@ -109,4 +109,72 @@ namespace HiSUP.Controllers
             return View(student);
         }
     }
+// GET: Student/Edit/5
+public IActionResult Edit(int id)
+{
+    Models.Student? student = null;
+    using (var conn = new SqlConnection(_connectionString))
+    {
+        conn.Open();
+        var cmd = new SqlCommand("SELECT * FROM Students WHERE StudentID = @id", conn);
+        cmd.Parameters.AddWithValue("@id", id);
+        var reader = cmd.ExecuteReader();
+        if (reader.Read())
+        {
+            student = new Models.Student
+            {
+                StudentID    = (int)reader["StudentID"],
+                FirstName    = reader["FirstName"].ToString()!,
+                LastName     = reader["LastName"].ToString()!,
+                Email        = reader["Email"].ToString()!,
+                CNIC         = reader["CNIC"].ToString()!,
+                Phone        = reader["Phone"].ToString(),
+                DepartmentID = (int)reader["DepartmentID"],
+                ProgramID    = (int)reader["ProgramID"],
+                Semester     = (int)reader["Semester"],
+                CGPA         = (decimal)reader["CGPA"],
+                Status       = reader["Status"].ToString()!
+            };
+        }
+    }
+    if (student == null) return NotFound();
+    return View(student);
+}
+
+// POST: Student/Edit/5
+[HttpPost]
+[ValidateAntiForgeryToken]
+public IActionResult Edit(Models.Student student)
+{
+    using (var conn = new SqlConnection(_connectionString))
+    {
+        conn.Open();
+        var cmd = new SqlCommand(
+            "UPDATE Students SET FirstName=@FirstName, LastName=@LastName, " +
+            "Email=@Email, Phone=@Phone, Semester=@Semester, Status=@Status " +
+            "WHERE StudentID=@StudentID", conn);
+        cmd.Parameters.AddWithValue("@FirstName",  student.FirstName);
+        cmd.Parameters.AddWithValue("@LastName",   student.LastName);
+        cmd.Parameters.AddWithValue("@Email",      student.Email);
+        cmd.Parameters.AddWithValue("@Phone",      student.Phone ?? "");
+        cmd.Parameters.AddWithValue("@Semester",   student.Semester);
+        cmd.Parameters.AddWithValue("@Status",     student.Status);
+        cmd.Parameters.AddWithValue("@StudentID",  student.StudentID);
+        cmd.ExecuteNonQuery();
+    }
+    return RedirectToAction("Index");
+}
+
+// Delete
+public IActionResult Delete(int id)
+{
+    using (var conn = new SqlConnection(_connectionString))
+    {
+        conn.Open();
+        var cmd = new SqlCommand("DELETE FROM Students WHERE StudentID = @id", conn);
+        cmd.Parameters.AddWithValue("@id", id);
+        cmd.ExecuteNonQuery();
+    }
+    return RedirectToAction("Index");
+}
 }
