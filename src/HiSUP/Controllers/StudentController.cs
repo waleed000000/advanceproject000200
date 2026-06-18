@@ -159,16 +159,28 @@ namespace HiSUP.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(int id)
-        {
-            using (var conn = new SqlConnection(_connectionString))
-            {
-                conn.Open();
-                var cmd = new SqlCommand("DELETE FROM Students WHERE StudentID = @id", conn);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.ExecuteNonQuery();
-            }
-            return RedirectToAction("Index");
-        }
+       public IActionResult Delete(int id)
+{
+    using (var conn = new SqlConnection(_connectionString))
+    {
+        conn.Open();
+        // Pehle related data delete karo
+        new SqlCommand("DELETE FROM FeePayments WHERE StudentID = @id", conn)
+            { Parameters = { new SqlParameter("@id", id) } }.ExecuteNonQuery();
+        new SqlCommand("DELETE FROM Enrollments WHERE StudentID = @id", conn)
+            { Parameters = { new SqlParameter("@id", id) } }.ExecuteNonQuery();
+        new SqlCommand("DELETE FROM AttendanceRecords WHERE StudentID = @id", conn)
+            { Parameters = { new SqlParameter("@id", id) } }.ExecuteNonQuery();
+        new SqlCommand("DELETE FROM LibraryIssues WHERE StudentID = @id", conn)
+            { Parameters = { new SqlParameter("@id", id) } }.ExecuteNonQuery();
+        new SqlCommand("DELETE FROM Results WHERE StudentID = @id", conn)
+            { Parameters = { new SqlParameter("@id", id) } }.ExecuteNonQuery();
+        new SqlCommand("DELETE FROM HostelAllotments WHERE StudentID = @id", conn)
+            { Parameters = { new SqlParameter("@id", id) } }.ExecuteNonQuery();
+        // Ab student delete karo
+        new SqlCommand("DELETE FROM Students WHERE StudentID = @id", conn)
+            { Parameters = { new SqlParameter("@id", id) } }.ExecuteNonQuery();
     }
+    return RedirectToAction("Index");
+}    }
 }
