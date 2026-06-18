@@ -2,78 +2,235 @@
     ViewData["Title"] = "HiSUP Portal";
 }
 
-<div class="hero-section">
-    <div class="container position-relative">
-        <div class="mb-3" style="font-size:3rem;">🎓</div>
+<style>
+    .hero { 
+        background: linear-gradient(135deg, #0a1628, #1a3a5c, #0a1628);
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero::before {
+        content: '';
+        position: absolute;
+        width: 300px; height: 300px;
+        background: radial-gradient(circle, rgba(201,168,76,0.15), transparent);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+        top: 10%; left: 10%;
+    }
+    .hero::after {
+        content: '';
+        position: absolute;
+        width: 200px; height: 200px;
+        background: radial-gradient(circle, rgba(201,168,76,0.1), transparent);
+        border-radius: 50%;
+        animation: float 8s ease-in-out infinite reverse;
+        bottom: 10%; right: 10%;
+    }
+    @@keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-30px); }
+    }
+    @@keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @@keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+    .hero-content { position: relative; z-index: 2; animation: fadeInUp 1s ease; }
+    .hero-icon { font-size: 5rem; animation: pulse 2s infinite; }
+    .hero-title { 
+        font-size: 4rem; font-weight: 900;
+        background: linear-gradient(135deg, #c9a84c, #f0c96b, #c9a84c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 3px;
+    }
+    .hero-subtitle { color: #8892a4; font-size: 1.3rem; margin: 10px 0 30px; }
+    .btn-glow {
+        background: linear-gradient(135deg, #c9a84c, #a07830);
+        color: #000; font-weight: 700;
+        padding: 14px 35px; border-radius: 50px;
+        border: none; font-size: 1.1rem;
+        box-shadow: 0 0 20px rgba(201,168,76,0.5);
+        transition: all 0.3s;
+        text-decoration: none; display: inline-block; margin: 5px;
+    }
+    .btn-glow:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 40px rgba(201,168,76,0.8);
+        color: #000;
+    }
+    .btn-outline-glow {
+        background: transparent;
+        color: #c9a84c; font-weight: 700;
+        padding: 13px 35px; border-radius: 50px;
+        border: 2px solid #c9a84c; font-size: 1.1rem;
+        transition: all 0.3s;
+        text-decoration: none; display: inline-block; margin: 5px;
+    }
+    .btn-outline-glow:hover {
+        background: rgba(201,168,76,0.1);
+        transform: translateY(-3px);
+        color: #c9a84c;
+    }
+    .stats-bar {
+        background: linear-gradient(135deg, #112240, #1a2f4e);
+        padding: 30px 0;
+        border-top: 1px solid #1e3a5f;
+        border-bottom: 1px solid #1e3a5f;
+    }
+    .stat-item { text-align: center; }
+    .stat-number { 
+        font-size: 2.5rem; font-weight: 900;
+        color: #c9a84c;
+        animation: fadeInUp 1s ease;
+    }
+    .stat-label { color: #8892a4; font-size: 0.9rem; }
+    .feature-card {
+        background: linear-gradient(135deg, #112240, #1a2f4e);
+        border: 1px solid #1e3a5f;
+        border-radius: 20px;
+        padding: 35px 25px;
+        text-align: center;
+        transition: all 0.4s;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+    }
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(201,168,76,0.05), transparent);
+        transition: left 0.5s;
+    }
+    .feature-card:hover::before { left: 100%; }
+    .feature-card:hover {
+        transform: translateY(-10px);
+        border-color: #c9a84c;
+        box-shadow: 0 20px 60px rgba(201,168,76,0.2);
+    }
+    .feature-icon { font-size: 3rem; margin-bottom: 15px; }
+    .feature-title { color: #c9a84c; font-weight: 700; font-size: 1.2rem; margin-bottom: 10px; }
+    .feature-desc { color: #8892a4; font-size: 0.9rem; }
+    .feature-btn {
+        background: linear-gradient(135deg, #c9a84c, #a07830);
+        color: #000; font-weight: 600;
+        padding: 10px 25px; border-radius: 25px;
+        border: none; margin-top: 15px;
+        text-decoration: none; display: inline-block;
+        transition: all 0.3s;
+    }
+    .feature-btn:hover { transform: scale(1.05); color: #000; }
+</style>
+
+<!-- Hero Section -->
+<div class="hero">
+    <div class="hero-content">
+        <div class="hero-icon">🎓</div>
         <h1 class="hero-title">HiSUP</h1>
         <p class="hero-subtitle">HITEC Smart University Portal</p>
-        <p class="text-muted mt-2" style="font-size:0.95rem;">
+        <p style="color:#8892a4; font-size:0.95rem; margin-bottom:30px;">
             Student Management · Fee · Library · Faculty · Exams
         </p>
-        <div class="mt-4">
-            <a asp-controller="Admin" asp-action="Index" class="btn btn-primary btn-lg me-3">
-                🛡️ Admin Dashboard
-            </a>
-            <a asp-controller="Student" asp-action="Index" class="btn btn-secondary btn-lg">
-                👨‍🎓 View Students
-            </a>
+        <div>
+            <a href="/Admin" class="btn-glow">🛡️ Admin Dashboard</a>
+            <a href="/Student" class="btn-outline-glow">👨‍🎓 Students</a>
         </div>
     </div>
 </div>
 
-<div class="container mt-5">
+<!-- Stats Bar -->
+<div class="stats-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6 stat-item">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Database Tables</div>
+            </div>
+            <div class="col-md-3 col-6 stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Stored Procedures</div>
+            </div>
+            <div class="col-md-3 col-6 stat-item">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Smart Triggers</div>
+            </div>
+            <div class="col-md-3 col-6 stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Live on Azure</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Feature Cards -->
+<div class="container mt-5 mb-5">
     <div class="row g-4">
         <div class="col-md-4">
-            <div class="card h-100 text-center p-3">
-                <div style="font-size:2.5rem;">👨‍🎓</div>
-                <h5 style="color:var(--gold)">Students</h5>
-                <p class="text-muted small">Register, manage and track all student records</p>
-                <a asp-controller="Student" asp-action="Index" class="btn btn-primary">Go →</a>
+            <div class="feature-card">
+                <div class="feature-icon">👨‍🎓</div>
+                <div class="feature-title">Student Management</div>
+                <div class="feature-desc">Register, track and manage all student records with ease</div>
+                <a href="/Student" class="feature-btn">Manage →</a>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card h-100 text-center p-3">
-                <div style="font-size:2.5rem;">👨‍🏫</div>
-                <h5 style="color:var(--gold)">Faculty</h5>
-                <p class="text-muted small">Manage faculty members and course assignments</p>
-                <a asp-controller="Faculty" asp-action="Index" class="btn btn-primary">Go →</a>
+            <div class="feature-card">
+                <div class="feature-icon">👨‍🏫</div>
+                <div class="feature-title">Faculty Portal</div>
+                <div class="feature-desc">Manage faculty members, assignments and workload</div>
+                <a href="/Faculty" class="feature-btn">Manage →</a>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card h-100 text-center p-3">
-                <div style="font-size:2.5rem;">💰</div>
-                <h5 style="color:var(--gold)">Fee Management</h5>
-                <p class="text-muted small">Process payments and generate fee slips</p>
-                <a asp-controller="Fee" asp-action="Index" class="btn btn-primary">Go →</a>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <div class="feature-title">Fee Management</div>
+                <div class="feature-desc">Process payments and generate fee slips instantly</div>
+                <a href="/Fee" class="feature-btn">Manage →</a>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card h-100 text-center p-3">
-                <div style="font-size:2.5rem;">📘</div>
-                <h5 style="color:var(--gold)">Courses</h5>
-                <p class="text-muted small">Add and manage university course catalog</p>
-                <a asp-controller="Course" asp-action="Index" class="btn btn-primary">Go →</a>
+            <div class="feature-card">
+                <div class="feature-icon">📘</div>
+                <div class="feature-title">Course Catalog</div>
+                <div class="feature-desc">Add and manage all university courses and programs</div>
+                <a href="/Course" class="feature-btn">Manage →</a>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card h-100 text-center p-3">
-                <div style="font-size:2.5rem;">📚</div>
-                <h5 style="color:var(--gold)">Library</h5>
-                <p class="text-muted small">Issue books and track library inventory</p>
-                <a asp-controller="Library" asp-action="Index" class="btn btn-primary">Go →</a>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <div class="feature-title">Library System</div>
+                <div class="feature-desc">Issue books, track inventory and manage returns</div>
+                <a href="/Library" class="feature-btn">Manage →</a>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card h-100 text-center p-3">
-                <div style="font-size:2.5rem;">🛡️</div>
-                <h5 style="color:var(--gold)">Admin Panel</h5>
-                <p class="text-muted small">Full control — stats, reports, system settings</p>
-                <a asp-controller="Admin" asp-action="Index" class="btn btn-primary">Go →</a>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <div class="feature-title">Admin Dashboard</div>
+                <div class="feature-desc">Full control with stats, reports and system settings</div>
+                <a href="/Admin" class="feature-btn">Manage →</a>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container mt-5 mb-4 text-center text-muted small">
-    <p>HiSUP v1.0 · HITEC University · Roll No: 24-CS-015</p>
+<!-- Footer Info -->
+<div class="text-center py-4" style="border-top: 1px solid #1e3a5f;">
+    <p style="color:#8892a4; font-size:0.9rem;">
+        HiSUP v1.0 &nbsp;·&nbsp; HITEC University &nbsp;·&nbsp; 
+        Roll No: 24-CS-015 &nbsp;·&nbsp; 
+        <span style="color:#c9a84c;">Powered by Azure + SQL Server</span>
+    </p>
 </div>
